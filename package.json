@@ -51,7 +51,7 @@
   },
   "scripts": {
     "start": "nodemon server.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "prod": "MONGOLAB_URI=davyengone:getbetter2015@ds047652.mongolab.com:47652 GITHUB_CLIENT_ID=fa362ea98c5029cc94f7 GITHUB_CLIENT_SECRET=86d1260ec0f8c5992bddef93782c2bbdb8aad5b7 process.env.NODE_ENV=production nodemon server.js"
   },
   "author": "",
   "license": "ISC"
