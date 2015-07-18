@@ -1,0 +1,67 @@
+<section class="padding-top-small ">
+	<div class="container register">
+		<div class="row">
+			<div class="col s12 left">
+		      <h4>Registration with Github</h4>
+		    </div>
+	    	<form class="col s12">
+
+	    		<div class="card-panel teal lighten-2">
+	    			<span ng-if="!vm.currentUser">
+	    				Please register with your Github account as we will be using it for the whole bootcamp. No Github? Don't worry, click on the button below and you will be able to create an account directly on Github.
+	    			</span>
+	    			<span ng-if="vm.currentUser">
+	    				Welcome {{vm.currentUser.name}}!
+	    			</span>
+	    		</div>
+
+	    		<div class="row" ng-if="!vm.currentUser">
+	    			<a href="/auth/github" class="waves-effect waves-light btn ajust-margin">Register with Github</a>
+	    		</div>
+	    		<div ng-if="vm.currentUser">
+			      	<div class="row">
+			      		<div class="input-field col s6">
+				          	<input name="company" type="text" class="validate" ng-model="vm.company">
+				          	<label for="company">Your company</label>
+				        </div>
+			      	</div>
+			      	<div class="row">
+				        <div class="input-field col s6">
+				          <input value="" name="job" type="text" class="validate" ng-model="vm.job">
+				          <label for="job">Your current position</label>
+				        </div>
+			      	</div>
+			      	<div class="row">
+				        <div class="input-field col s6">
+				          <input value="" name="programming_language" type="text" class="validate" ng-model="vm.programmingLanguage">
+				          <label for="programming_language">What is your favorite programming language?</label>
+				        </div>
+			      	</div>
+
+					<div class="row">
+						<label for="">Select the session you want to attend</label>
+					    <p>
+					      <input name="session" type="radio" id="session1" value="14th Sept - 19th Sept" ng-model="vm.session"/>
+					      <label for="session1">14th Sept - 19th Sept</label>
+					    </p>
+					    <p>
+					      <input name="session" type="radio" id="session2" value="28th Sept - 3rd Oct" ng-model="vm.session"/>
+					      <label for="session2">28th Sept - 3rd Oct</label>
+					    </p>
+					    <p>
+					      <input class="with-gap" name="session" type="radio" id="session3" value="28th Sept - 3rd Oct"  ng-model="vm.session"/>
+					      <label for="session3">12th Oct - 17th Oct</label>
+					    </p>
+				      	<p>
+				        	<input name="session" type="radio" id="session4" value="26th Oct - 31st Oct" ng-model="vm.session"/>
+					        <label for="session4">26th Oct - 31st Oct</label>
+					    </p>
+					</div>
+					<div class="row">
+		    			<a class="waves-effect waves-light btn" ng-click="vm.register()">Validate</a>
+		    		</div>
+	    		</div>
+	    	</form>
+	  	</div>
+	</div>
+</section>

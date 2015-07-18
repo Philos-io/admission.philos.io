@@ -21,11 +21,15 @@ var GITHUB_CLIENT_SECRET = "7a814ebd607af91f1e36392ba79d097815bb5082";
 var port = process.env.PORT || 9000;
 
 
-var dirPath = path.join(__dirname, 'dist/');
+var dirPath = path.join(__dirname, '/');
 
 var UserSchema = mongoose.Schema({
 	name: {type: String, require: true},
 	jobTitle: {type: String, require: false},
+	company: {type: String, require: false},
+	session: {type: String, require: false},
+	registered: {type: Boolean, require: false},
+	programmingLanguage: {type: String, require: false},
 	github: {type: String, require: false},
 	email: {type: String, require: true},
 	provider: [String]
@@ -138,18 +142,56 @@ app.get('/auth/github', passport.authenticate('github'), function(){
 function callback(req, res) {
 	console.log(req.user, 'inside callback');
 	var login = req.user.github;
-    res.redirect('/?user='+login);
+    res.redirect('/#/register/?user='+login);
 }
 app.get('/auth/github/callback', passport.authenticate('github', { failureRedirect: '/error' }), callback);
 
 app.get('/auth/linkedin',passport.authenticate('linkedin', {state: 'philos lab'}));
 
 app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRedirect: '/register' }),
-
 	function(req, res) { 
 		res.redirect('/register');	
 	}
 );
+
+app.post('/api/users', function(req, res){
+	console.log(req.body);
+
+	User.findOne({github: req.body.username }, function(err, user){
+		if (err) {
+			done(err);
+			throw err;
+		}
+		console.log(user);
+		res.send(user).status(200);
+	});});
+
+app.post('/api/users/register', function(req, res){
+
+	var newUser = req.body.user;
+
+	User.findOne({github: newUser.github }, function(err, user){
+		if (err) {
+			done(err);
+			throw err;
+		}
+
+		user.company = newUser.company;
+		user.job = newUser.job;
+		user.programmingLanguage = newUser.programmingLanguage;
+		user.session = newUser.session;
+		user.registered = true;
+
+		user.save(function(err){
+			if (err) {
+				res.send({message: 'not saved', user: user}).status(500);
+			}
+
+			res.send({message: 'saved', user: user}).status(200);
+		})
+		
+		
+	});});
 
 
 app.listen(port, function(){
