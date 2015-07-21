@@ -54,7 +54,7 @@ app.use(express.static(dirPath));
 
 var User = mongoose.model('User', UserSchema);
 
-var db = mongoose.connect(db);
+//var db = mongoose.connect(db);
 
 passport.use(new GithubStrategy({
 	clientID: GITHUB_CLIENT_ID,
@@ -64,31 +64,33 @@ passport.use(new GithubStrategy({
 
 	profile = profile._json;
 	
-	User.findOne({email: profile.email}, function(err, user){
-		process.nextTick(function () {		
-			if (err) {
-				done(err, user);
-				throw err;
-			}
 
-			if (user) {			
-				done(null, user);
-			}else{
-				var user = new User();
-				user.name = profile.name;
-				user.github = profile.login;
-				user.email = profile.email;
-				user.provider.push('github');
+	done(null, profile);
+	// User.findOne({email: profile.email}, function(err, user){
+	// 	process.nextTick(function () {		
+	// 		if (err) {
+	// 			done(err, user);
+	// 			throw err;
+	// 		}
 
-				user.save(function(err){
-					if (err) {
-						throw err;
-					}
-					done(null, user);
-				});
-			}
-		});
-	});
+	// 		if (user) {			
+	// 			done(null, user);
+	// 		}else{
+	// 			var user = new User();
+	// 			user.name = profile.name;
+	// 			user.github = profile.login;
+	// 			user.email = profile.email;
+	// 			user.provider.push('github');
+
+	// 			user.save(function(err){
+	// 				if (err) {
+	// 					throw err;
+	// 				}
+	// 				done(null, user);
+	// 			});
+	// 		}
+	// 	});
+	// });
 }));
 
 passport.serializeUser(function(user, done) {
@@ -121,41 +123,48 @@ app.get('/auth/linkedin/callback', passport.authenticate('linkedin', { failureRe
 app.post('/api/users', function(req, res){
 	console.log(req.body);
 
-	User.findOne({github: req.body.username }, function(err, user){
-		if (err) {
-			done(err);
-			throw err;
-		}
-		console.log(user);
-		res.send(user).status(200);
-	});});
+	// User.findOne({github: req.body.username }, function(err, user){
+	// 	if (err) {
+	// 		done(err);
+	// 		throw err;
+	// 	}
+	// 	console.log(user);
+	// 	res.send(user).status(200);
+	// });
+
+	res.send({github: 'davyengone', name:' Davy Engone'}).status(200);
+});
 
 app.post('/api/users/register', function(req, res){
 
 	var newUser = req.body.user;
 
-	User.findOne({github: newUser.github }, function(err, user){
-		if (err) {
-			done(err);
-			throw err;
-		}
+	// User.findOne({github: newUser.github }, function(err, user){
+	// 	if (err) {
+	// 		done(err);
+	// 		throw err;
+	// 	}
 
-		user.company = newUser.company;
-		user.job = newUser.job;
-		user.programmingLanguage = newUser.programmingLanguage;
-		user.session = newUser.session;
-		user.registered = true;
+	// 	user.company = newUser.company;
+	// 	user.job = newUser.job;
+	// 	user.programmingLanguage = newUser.programmingLanguage;
+	// 	user.session = newUser.session;
+	// 	user.registered = true;
 
-		user.save(function(err){
-			if (err) {
-				res.send({message: 'not saved', user: user}).status(500);
-			}
+	// 	user.save(function(err){
+	// 		if (err) {
+	// 			res.send({message: 'not saved', user: user}).status(500);
+	// 		}
 
-			res.send({message: 'saved', user: user}).status(200);
-		})
+	// 		res.send({message: 'saved', user: user}).status(200);
+	// 	})
 		
-		
-	});});
+	
+
+	// });
+
+	res.send({message: 'saved', user: user}).status(200);
+});
 
 app.listen(port);
 
