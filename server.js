@@ -14,8 +14,8 @@ var express = require('express'),
 var GITHUB_CLIENT_ID = process.env.NODE_ENV === 'production'? process.env.GITHUB_CLIENT_ID: "f344a987c3d87a83b193";
 var GITHUB_CLIENT_SECRET = process.env.NODE_ENV === 'production'? process.env.GITHUB_CLIENT_SECRET :"7a814ebd607af91f1e36392ba79d097815bb5082";
 
-var Parse_KEY = process.env.NODE_ENV === 'production'? process.env.Parse_KEY: "Mixvf1k0dyzRjwP6iMaVBoA6EBNiUrFPDr8hU1d1";
-var Parse_CLIENT_ID = process.env.NODE_ENV === 'production'? process.env.Parse_CLIENT_ID: "wCos1ljBvek1nrksJdfyDRerYhrORYayvTh9W5Dl";
+var APPLICATION_ID = process.env.NODE_ENV === 'production'? process.env.APPLICATION_ID: "Mixvf1k0dyzRjwP6iMaVBoA6EBNiUrFPDr8hU1d1";
+var JAVASCRIPT_KEY = process.env.NODE_ENV === 'production'? process.env.JAVASCRIPT_KEY: "wCos1ljBvek1nrksJdfyDRerYhrORYayvTh9W5Dl";
 
 
 var port = process.env.PORT || 9000;
@@ -55,7 +55,7 @@ passport.use(new GithubStrategy({
 
 	profile = profile._json;
 
-	Parse.initialize(Parse_KEY, Parse_CLIENT_ID);
+	Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
 	
 	var Candidate = Parse.Object.extend("Candidate");
 	var query = new Parse.Query(Candidate);
