@@ -12,7 +12,7 @@ var express = require('express'),
 	Parse = require('parse').Parse;
 
 var GITHUB_CLIENT_ID = process.env.NODE_ENV === 'production'? process.env.GITHUB_CLIENT_ID: "f344a987c3d87a83b193";
-var GITHUB_CLIENT_SECRET = process.env.NODE_ENV === 'production'? process.env.GITHUB_CLIENT_SECRET :"7a814ebd607af91f1e36392ba79d097815bb5082";
+var GITHUB_CLIENT_SECRET = process.env.NODE_ENV === 'production'? process.env.GITHUB_CLIENT_SECRET : "7a814ebd607af91f1e36392ba79d097815bb5082";
 
 var APPLICATION_ID = process.env.NODE_ENV === 'production'? process.env.APPLICATION_ID: "Mixvf1k0dyzRjwP6iMaVBoA6EBNiUrFPDr8hU1d1";
 var JAVASCRIPT_KEY = process.env.NODE_ENV === 'production'? process.env.JAVASCRIPT_KEY: "wCos1ljBvek1nrksJdfyDRerYhrORYayvTh9W5Dl";
@@ -20,8 +20,9 @@ var JAVASCRIPT_KEY = process.env.NODE_ENV === 'production'? process.env.JAVASCRI
 
 var port = process.env.PORT || 9000;
 var db = process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/bootcamp';
-var url = process.env.NODE_ENV === 'production'? 'admission.philos.io': 'localhost:9000';
+var url = process.env.NODE_ENV === 'production'? 'https://admission.philos.io': 'http://localhost:9000';
 
+var callbackURL = url + "/auth/github/callback"; 
 
 var dirPath = path.join(__dirname, '/');
 
@@ -47,10 +48,12 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+
+
 passport.use(new GithubStrategy({
 	clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: "http:// "+ url + "/auth/github/callback"
+    callbackURL: callbackURL
 }, function(token, tokenSecret, profile, done){
 
 	profile = profile._json;
@@ -73,8 +76,7 @@ passport.use(new GithubStrategy({
 	  	},
 	  	error: function(user, error) {
 	  		done(error, user);
-	  	}
-	});
+	  	}});
 
 	function addCandidate(){
 		var candidate = new Candidate();
@@ -91,9 +93,7 @@ passport.use(new GithubStrategy({
 			error: function(user, err){
 				done(err, user);
 			}
-		});
-	}
-	
+		});}
 }));
 
 app.get('/auth/github', passport.authenticate('github'), function(){});
