@@ -25,7 +25,7 @@ var url = process.env.NODE_ENV === 'production'? 'https://admission.philos.io': 
 var callbackURL = url + "/auth/github/callback"; 
 
 var dirPath = path.join(__dirname, '/');
-
+	
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(logger('dev'));
