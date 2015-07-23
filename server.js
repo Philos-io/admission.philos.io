@@ -83,7 +83,7 @@ passport.use(new GithubStrategy({
 
 		candidate.set('name', profile.name);
 		candidate.set('github', profile.login);
-		candidate.set('email', profile.email);
+		candidate.set('email', profile.email || "");
 		candidate.set('provider', 'github');
 
 		candidate.save(null, {
@@ -125,6 +125,7 @@ app.post('/api/users/register', function(req, res){
 					updateUser.set('interviewed', false);
 					
 					updateUser.set('job', newCandidate.job);
+					updateUser.set('email', newCandidate.email);
 					updateUser.set('company', newCandidate.company);
 					updateUser.set('session', newCandidate.session);
 					updateUser.set('isFreelance', newCandidate.isFreelance);

@@ -7,6 +7,7 @@
 			function register(vm){
 				var user = {
 					github: vm.currentUser.github,
+					email: vm.currentUser.email,
 					company: vm.company,
 					job: vm.job,
 					programmingLanguage: vm.programmingLanguage,

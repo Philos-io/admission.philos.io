@@ -26,6 +26,12 @@
 		      		<label for="freelance">Are you a freelance?</label>	
     			</div>
 		    </div>
+		    <div class="row" data-ng-if="!vm.currentUser.email">
+	      		<div class="input-field col s12 l6">
+		          	<input name="email" type="email" class="validate"  required data-ng-model="vm.currentUser.email">
+		          	<label for="company">Your email</label>
+		        </div>
+	      	</div>
 	      	<div class="row">
 	      		<div class="input-field col s12 l6">
 		          	<input name="company" type="text" class="validate"  required data-ng-model="vm.company">
