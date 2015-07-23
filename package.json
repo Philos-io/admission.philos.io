@@ -49,12 +49,19 @@
     "yeticss": "^7.0.0"
   },
   "devDependencies": {
-    "html-loader": "^0.3.0"
+    "css-loader": "^0.15.5",
+    "file-loader": "^0.8.4",
+    "html-loader": "^0.3.0",
+    "style-loader": "^0.12.3",
+    "url-loader": "^0.5.6"
   },
   "scripts": {
-    "start": "nodemon server.js",
-    "prod": "MONGOLAB_URI=davyengone:getbetter2015@ds047652.mongolab.com:47652 GITHUB_CLIENT_ID=fa362ea98c5029cc94f7 GITHUB_CLIENT_SECRET=86d1260ec0f8c5992bddef93782c2bbdb8aad5b7 process.env.NODE_ENV=production nodemon server.js"
+    "server": "nodemon server.js",
+    "start": "webpack-dev-server",
+    "build": "webpack",
+    "deploy": "surge -p app -d admission-philos.surge.sh",
+    "booyaa": "npm run build && npm run deploy"
   },
-  "author": "",
+  "author": "davy@philos.io",
   "license": "ISC"
 }
