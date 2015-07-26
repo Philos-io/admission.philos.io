@@ -147,6 +147,21 @@
 				controllerAs: 'vm'
 			});
 	}
+
+	function mainDirective(){
+		return {
+			restrict: 'E',
+			templateUrl: './views/main.html'
+		};
+	}
+
+	function headerDirective(){
+		return {
+			restrict: 'E',
+			templateUrl: './views/header.html'
+		};
+	}
+
 	Configuration.$inject = ['$routeProvider'];
 
 
@@ -158,7 +173,9 @@
 		.controller('RegisterController', RegisterController)
 		.controller('WelcomeController', WelcomeController)
 		.controller('ConfirmationController', ConfirmationController)
-		.config(Configuration);
+		.config(Configuration)
+		.directive('philosHeader', headerDirective)
+		.directive('philosAdmission', mainDirective);
 
 
 	angular.bootstrap(document.body, ['admission.philos.io'], {strictDI: true});
