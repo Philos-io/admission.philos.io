@@ -7,10 +7,10 @@
 		</div>
 	    <div class="row">
 	    	<div class="card-panel">
-				<span data-ng-if="!vm.currentUser" class="flow-text">
+				<span data-ng-if="!vm.currentUser">
 					Please register with your Github account as we will be using it for the whole bootcamp. No Github? Don't worry, click on the button below and you will be able to create an account directly on Github.
 				</span>
-				<span data-ng-if="vm.currentUser" class="flow-text">
+				<span data-ng-if="vm.currentUser">
 					Welcome {{vm.currentUser.name}}!
 				</span>
 			</div>	
