@@ -56,13 +56,7 @@
 	}
 	UserFactory.$inject = ['$http', '$location', 'AppConfig'];
 
-	function RegisterController($http, $location, UserFactory, AppConfig){
-
-			if (AppConfig.step === 3) {
-				$location.path('/confirmation');
-
-				return
-			}
+	function AppController($http, $location, UserFactory, AppConfig){
 
 			var vm = this;
 
@@ -73,7 +67,6 @@
 				if (AppConfig.done) {
 					$location.path('/confirmation');
 				}
-
 
 				UserFactory.getCurrentUser()
 					.then(function(res){
@@ -99,31 +92,31 @@
 				UserFactory.register(vm);	
 			};
 	}
-	RegisterController.$inject = ['$http', '$location', 'UserFactory', 'AppConfig'];
+	AppController.$inject = ['$http', '$location', 'UserFactory', 'AppConfig'];
 
 	function WelcomeController($location, AppConfig){
 
-			if (AppConfig.step === 3) AppConfig.step = 1;
+			// if (AppConfig.step === 3) AppConfig.step = 1;
 
-			if (AppConfig.step === 2) {
-				$location.path('/register');
-			}
+			// if (AppConfig.step === 2) {
+			// 	$location.path('/register');
+			// }
 
-			this.navigateTo = function(url){
+			// this.navigateTo = function(url){
 				
-				if($location.$$host !== 'localhost'){
-					mixpanel.track('Go to register page', {
-						"step": 1
-					});
-				}
+			// 	if($location.$$host !== 'localhost'){
+			// 		mixpanel.track('Go to register page', {
+			// 			"step": 1
+			// 		});
+			// 	}
 
-				$location.path(url);
-			}
+			// 	$location.path(url);
+			// }
 	}
 	WelcomeController.$inject = ['$location', 'AppConfig'];
 
 	function ConfirmationController($location, $route, AppConfig){
-		if (AppConfig.step < 3) {
+		if (!AppConfig.done) {
 			$location.path('/register');
 		}
 	}
@@ -133,12 +126,12 @@
 		$routeProvider
 			.when('/', {
 				templateUrl: './views/welcome.html',
-				controller: 'WelcomeController',
+				controller: 'AppController',
 				controllerAs: 'vm'
 			})
 			.when('/register', {
-				templateUrl: './views/register.html',
-				controller: 'RegisterController',
+				templateUrl: './views/welcome.html',
+				controller: 'AppController',
 				controllerAs: 'vm'
 			})
 			.when('/confirmation', {
@@ -147,6 +140,7 @@
 				controllerAs: 'vm'
 			});
 	}
+	Configuration.$inject = ['$routeProvider'];
 
 	function mainDirective(){
 		return {
@@ -162,21 +156,34 @@
 		};
 	}
 
-	Configuration.$inject = ['$routeProvider'];
+	function disabledForm(){
+		return {
+			restrict: 'A',
+			link: function($scope, $element, $attrs){
 
+				$scope.$watch($attrs.disabledForm, function(disabled){
+					if (!disabled) {
+						$element.find('input').attr('disabled', true);
+					}else{
+						$element.find('input').attr('disabled', false);
+					}
+				});
+			}
+		}
+	}
 
 	angular.module('admission.philos.io', ['ngRoute'])
 		.factory('UserFactory', UserFactory)
 		.value('AppConfig', {
-			currentUser: '',
+			currentUser: {},
 			step: 1})
-		.controller('RegisterController', RegisterController)
+		.controller('AppController', AppController)
 		.controller('WelcomeController', WelcomeController)
 		.controller('ConfirmationController', ConfirmationController)
 		.config(Configuration)
 		.directive('philosHeader', headerDirective)
-		.directive('philosAdmission', mainDirective);
-
+		.directive('philosAdmission', mainDirective)
+		.directive('disabledForm', disabledForm);
 
 	angular.bootstrap(document.body, ['admission.philos.io'], {strictDI: true});
 })();

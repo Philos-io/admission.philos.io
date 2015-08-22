@@ -26,7 +26,6 @@ var callbackURL = url + "/auth/github/callback";
 
 var dirPath = path.join(__dirname, '../public');
 
-console.log(dirPath, 'inside here');
 	
 app.use(passport.initialize());
 app.use(passport.session());
