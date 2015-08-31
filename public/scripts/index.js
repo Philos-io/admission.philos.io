@@ -72,7 +72,7 @@
 					.then(function(res){
 						if (res.data) {
 							vm.currentUser = AppConfig.currentUser = res.data;
-							vm.session = "14th Sept - 19th Sept";
+							vm.session = "28th Sept - 3rd Oct";
 
 							// Registration step 2
 							AppConfig.step = 2;
