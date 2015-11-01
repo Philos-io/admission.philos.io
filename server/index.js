@@ -18,15 +18,14 @@ var APPLICATION_ID = process.env.NODE_ENV === 'production'? process.env.APPLICAT
 var JAVASCRIPT_KEY = process.env.NODE_ENV === 'production'? process.env.JAVASCRIPT_KEY: "wCos1ljBvek1nrksJdfyDRerYhrORYayvTh9W5Dl";
 
 
-var port = process.env.PORT || 9000;
+var port = process.env.PORT || 8000;
 var db = process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/bootcamp';
 var url = process.env.NODE_ENV === 'production'? 'https://admission.philos.io': 'http://localhost:9000';
 
-var callbackURL = url + "/auth/github/callback"; 
+var callbackURL = url + "/auth/github/callback";
 
 var dirPath = path.join(__dirname, '../public');
 
-	
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(logger('dev'));
@@ -60,7 +59,7 @@ passport.use(new GithubStrategy({
 	profile = profile._json;
 
 	Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
-	
+
 	var Candidate = Parse.Object.extend("Candidate");
 	var query = new Parse.Query(Candidate);
 
@@ -124,7 +123,7 @@ app.post('/api/users/register', function(req, res){
 				success: function(updateUser){
 					updateUser.set('passInterview', false);
 					updateUser.set('interviewed', false);
-					
+
 					updateUser.set('job', newCandidate.job);
 					updateUser.set('email', newCandidate.email);
 					updateUser.set('company', newCandidate.company);
