@@ -44,9 +44,8 @@
           <span data-ng-if="vm.currentUser">
             Welcome {{vm.currentUser.name}}!
           </span>
-        </div>  
+        </div>
       </div>
-      
       <div class="row" data-ng-if="!vm.currentUser">
 
         <a href="/auth/github" class="waves-effect waves-light btn ajust-margin">
@@ -55,14 +54,15 @@
         </a>
       </div>
 
-      <form class="col s12" 
-            name="registration" data-ng-submit="vm.register()" 
+      <form class="col s12"
+            name="registration"
+            data-ng-submit="vm.register()"
             data-disabled-form="vm.currentUser">
 
         <div class="row">
           <div class="input-field col s12 l6">
             <input type="checkbox" id="freelance" data-ng-model="vm.isFreelance" />
-              <label for="freelance">Are you a freelance?</label> 
+              <label for="freelance">Are you a freelance?</label>
           </div>
         </div>
         <div class="row" data-ng-if="!vm.currentUser.email">
@@ -96,9 +96,9 @@
             <input name="session" type="radio" id="session2" value="Next session" data-ng-model="vm.session"/>
             <label for="session2">23rd November - 28th November</label>
           </p>
-	</div>
+        </div>
         <div class="row">
-          <button class="waves-effect waves-light btn" data-ng-disabled="registration.$invalid">Validate</button>
+          <button class="waves-effect waves-light btn" data-ng-disabled="registration.$invalid">Apply for the bootcamp</button>
         </div>
       </form>
   </div>
