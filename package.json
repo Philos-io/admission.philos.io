@@ -58,6 +58,7 @@
   "scripts": {
     "start": "nodemon server.js",
     "build": "webpack",
+    "test": "protractor config",
     "deploy": "surge -p app -d admission-philos.surge.sh",
     "booyaa": "npm run build && npm run deploy"
   },
