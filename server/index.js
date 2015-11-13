@@ -48,8 +48,6 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-
-
 passport.use(new GithubStrategy({
 	clientID: GITHUB_CLIENT_ID,
     clientSecret: GITHUB_CLIENT_SECRET,
@@ -177,10 +175,11 @@ function sendEmail(req, res, options, callback){
 	// send mail with defined transport object
 	transporter.sendMail(options, function(error, info){
 		if(error){
-			console.log(error);
+			// console.log(error);
+      // should catch error here and redirect the user to the main page
 		}else{
-			console.log('Message sent: ' + info.response);
         if (callback) callback();
+      // should catch error here and redirect the user to the main page
 		}
 	});
 }
