@@ -1,28 +1,20 @@
-var express = require('express'),
+'use strict';
+
+require('babel-register');
+
+let express = require('express'),
 	app = express(),
 	path = require('path'),
 	passport = require('passport'),
 	GithubStrategy = require('passport-github').Strategy,
 	logger = require('morgan'),
 	session = require('express-session'),
-	methodOverride = require('method-override')
+	methodOverride = require('method-override'),
 	bodyParser = require('body-parser'),
 	cookieParser = require('cookie-parser'),
 	nodemailer = require('nodemailer'),
-	Parse = require('parse').Parse;
-
-var GITHUB_CLIENT_ID = process.env.NODE_ENV === 'production'? process.env.GITHUB_CLIENT_ID: "f344a987c3d87a83b193";
-var GITHUB_CLIENT_SECRET = process.env.NODE_ENV === 'production'? process.env.GITHUB_CLIENT_SECRET : "7a814ebd607af91f1e36392ba79d097815bb5082";
-
-var APPLICATION_ID = process.env.NODE_ENV === 'production'? process.env.APPLICATION_ID: "Mixvf1k0dyzRjwP6iMaVBoA6EBNiUrFPDr8hU1d1";
-var JAVASCRIPT_KEY = process.env.NODE_ENV === 'production'? process.env.JAVASCRIPT_KEY: "wCos1ljBvek1nrksJdfyDRerYhrORYayvTh9W5Dl";
-
-
-var port = process.env.PORT || 8000;
-var db = process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/bootcamp';
-var url = process.env.NODE_ENV === 'production'? 'https://admission.philos.io': 'http://localhost:9000';
-
-var callbackURL = url + "/auth/github/callback";
+	Parse = require('parse').Parse,
+  config = require('./config');
 
 var dirPath = path.join(__dirname, '../public');
 
@@ -48,15 +40,16 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+
 passport.use(new GithubStrategy({
-	clientID: GITHUB_CLIENT_ID,
-    clientSecret: GITHUB_CLIENT_SECRET,
-    callbackURL: callbackURL
+	clientID: config.GITHUB_CLIENT_ID,
+    clientSecret: config.GITHUB_CLIENT_SECRET,
+    callbackURL: `${config.URL}/auth/github/callback`,
 }, function(token, tokenSecret, profile, done){
 
 	profile = profile._json;
 
-	Parse.initialize(APPLICATION_ID, JAVASCRIPT_KEY);
+	Parse.initialize(config.APPLICATION_ID, config.JAVASCRIPT_KEY);
 
 	var Candidate = Parse.Object.extend("Candidate");
 	var query = new Parse.Query(Candidate);
@@ -184,6 +177,6 @@ function sendEmail(req, res, options, callback){
 	});
 }
 
-app.listen(port);
+app.listen(config.PORT);
 
 exports = module.exports = app;
