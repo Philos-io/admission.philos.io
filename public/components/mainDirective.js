@@ -4,7 +4,7 @@
 	function mainDirective(){
 		return {
 			restrict: 'E',
-			templateUrl: '../views/main.html'
+			templateUrl: 'views/main.html'
 		};
 	}
 
