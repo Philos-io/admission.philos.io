@@ -15,7 +15,7 @@
 					.then(function(res){
 						if (res.data) {
 							vm.currentUser = AppConfig.currentUser = res.data;
-							vm.session = "28th Sept - 3rd Oct";
+							vm.session = "25th JAN - 30th JAN";
 
 							// Registration step 2
 							AppConfig.step = 2;
@@ -35,6 +35,7 @@
 				UserFactory.register(vm);	
 			};
 	}
+
 	AppController.$inject = ['$http', '$location', 'UserFactory', 'AppConfig'];
 
   angular.module('admission.philos.io').controller('AppController', AppController);
