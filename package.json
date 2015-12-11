@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "server": "nodemon server",
+    "azure": "azure site log tail bootcamp-philos",
     "log": "rm -rf diagnostics.zip diagnostics && azure site log download bootcamp-philos && open diagnostics.zip",
     "build": "webpack",
     "wpack": "webpack -w",
