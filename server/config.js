@@ -5,7 +5,7 @@ const config = {
   JAVASCRIPT_KEY : process.env.NODE_ENV === 'production'? process.env.JAVASCRIPT_KEY: "wCos1ljBvek1nrksJdfyDRerYhrORYayvTh9W5Dl",
   PORT : process.env.PORT || 8000,
   DB : process.env.MONGOLAB_URI || 'mongodb://' + (process.env.DB_1_PORT_27017_TCP_ADDR || 'localhost') + '/bootcamp',
-  URL : process.env.NODE_ENV === 'production'? 'https://admission.philos.io': 'http://localhost:9000'
+  URL : process.env.NODE_ENV === 'production'? 'https://admission.philos.io': 'http://localhost:8000'
 };
 
 module.exports = config;

@@ -40,6 +40,8 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+let url = `${config.URL}/auth/github/callback`;
+console.log(url);
 
 passport.use(new GithubStrategy({
 	clientID: config.GITHUB_CLIENT_ID,
