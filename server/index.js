@@ -13,7 +13,7 @@ var express = require('express'),
 	bodyParser = require('body-parser'),
 	cookieParser = require('cookie-parser'),
 	nodemailer = require('nodemailer'),
-	Parse = require('parse').Parse,
+	Parse = require('parse/node').Parse,
   config = require('./config');
 
 var dirPath = path.join(__dirname, '../public');
@@ -42,8 +42,8 @@ passport.deserializeUser(function(user, done) {
 
 passport.use(new GithubStrategy({
 	clientID: config.GITHUB_CLIENT_ID,
-    clientSecret: config.GITHUB_CLIENT_SECRET,
-    callbackURL: config.URL+"/auth/github/callback",
+  clientSecret: config.GITHUB_CLIENT_SECRET,
+  callbackURL: config.URL+"/auth/github/callback",
 }, function(token, tokenSecret, profile, done){
 
 	profile = profile._json;
