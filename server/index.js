@@ -1,8 +1,8 @@
 'use strict';
 
-require('babel-register');
+// require('babel-register');
 
-let express = require('express'),
+var express = require('express'),
 	app = express(),
 	path = require('path'),
 	passport = require('passport'),
@@ -40,13 +40,10 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-let url = `${config.URL}/auth/github/callback`;
-console.log(url);
-
 passport.use(new GithubStrategy({
 	clientID: config.GITHUB_CLIENT_ID,
     clientSecret: config.GITHUB_CLIENT_SECRET,
-    callbackURL: `${config.URL}/auth/github/callback`,
+    callbackURL: config.URL+"/auth/github/callback",
 }, function(token, tokenSecret, profile, done){
 
 	profile = profile._json;
