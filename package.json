@@ -9,7 +9,8 @@
     "wpack": "webpack -w",
     "dev": "npm run wpack && npm start",
     "test": "protractor config",
-    "deploy": "surge -p public -d admission-philos.surge.sh",
+    "deploy-test": "surge -p public -d admission-philos.surge.sh",
+    "deploy": "surge -p public",
     "booyaa": "npm run build && npm run deploy"
   },
   "dependencies": {
