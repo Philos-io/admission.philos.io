@@ -1,7 +1,7 @@
 (function(){
   'use strict';
 
-  function ConfirmationController($location, $route, AppConfig){
+  function ConfirmationController($location, AppConfig){
 		if (!AppConfig.done) {
 			$location.path('/register');
 		}
