@@ -109,30 +109,30 @@ app.post('/api/users/register', function(req, res){
 
 	query.first({
 	  	success: function(user) {
-			user.save(null, {
-				success: function(updateUser){
-					updateUser.set('passInterview', false);
-					updateUser.set('interviewed', false);
+        user.save(null, {
+          success: function(updateUser){
+            updateUser.set('passInterview', false);
+            updateUser.set('interviewed', false);
 
-					updateUser.set('job', newCandidate.job);
-					updateUser.set('email', newCandidate.email);
-					updateUser.set('company', newCandidate.company);
-					updateUser.set('session', newCandidate.session);
-					updateUser.set('isFreelance', newCandidate.isFreelance);
-					updateUser.set('programmingLanguage', newCandidate.programmingLanguage);
+            updateUser.set('job', newCandidate.job);
+            updateUser.set('email', newCandidate.email);
+            updateUser.set('company', newCandidate.company);
+            updateUser.set('session', newCandidate.session);
+            updateUser.set('isFreelance', newCandidate.isFreelance);
+            updateUser.set('programmingLanguage', newCandidate.programmingLanguage);
 
-					updateUser.save();
+            updateUser.save();
 
-					processEmail(req, res, req.session.user);
+            processEmail(req, res, req.session.user);
 
-					// remove the current user from the session
-					req.session.user = null;
-					res.send({message: 'saved', user: user}).status(200);
-				},
-				error: function(user, err){
-					res.send({message: 'user not saved'}).status(500);
-				}
-			});
+            // remove the current user from the session
+            req.session.user = null;
+            res.send({message: 'saved', user: user}).status(200);
+          },
+          error: function(user, err){
+            res.send({message: 'user not saved'}).status(500);
+          }
+        });
 	  	},
 	  	error: function(user, error) {
 	  		res.send({message: 'user not saved'}).status(500);
