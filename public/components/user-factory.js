@@ -40,6 +40,7 @@
 					}
 
 					// Deactive loading
+          AppConfig.done = true;
 					$location.path('/confirmation');
 				}
 
