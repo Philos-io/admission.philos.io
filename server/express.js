@@ -9,8 +9,11 @@ let methodOverride = require('method-override');
 let bodyParser = require('body-parser');
 let cookieParser = require('cookie-parser');
 
-
 module.exports = function(app, passport){
+
+  if(process.env.NODE_ENV !== 'production'){
+    app.use(require('cors')());
+  }
 
   app.use(passport.initialize());
   app.use(passport.session());
