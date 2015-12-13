@@ -1,12 +1,7 @@
-(function(){
-  'use strict';
+export default function ConfirmationController($location, AppConfig){
+  if (!AppConfig.done) {
+    $location.path('/register');
+  }
+}
+ConfirmationController.$inject = ['$location', 'AppConfig'];
 
-  function ConfirmationController($location, AppConfig){
-		if (!AppConfig.done) {
-			$location.path('/register');
-		}
-	}
-	ConfirmationController.$inject = ['$location', 'AppConfig'];
-
-  angular.module('admission.philos.io').controller('ConfirmationController', ConfirmationController);
-})();

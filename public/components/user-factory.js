@@ -1,64 +1,45 @@
-(function(){
-  'use strict';
+export default function UserFactory($http, $location, AppConfig){
 
-	function UserFactory($http, $location, AppConfig){
+  function register(vm){
+    var user = {
+      github: vm.currentUser.github,
+      email: vm.currentUser.email,
+      company: vm.company,
+      job: vm.job,
+      programmingLanguage: vm.programmingLanguage,
+      session: vm.session,
+      isFreelance: vm.isFreelance
+    };
 
-		function register(vm){
-			var user = {
-				github: vm.currentUser.github,
-				email: vm.currentUser.email,
-				company: vm.company,
-				job: vm.job,
-				programmingLanguage: vm.programmingLanguage,
-				session: vm.session,
-				isFreelance: vm.isFreelance
-			};
+    $http
+      .post(AppConfig.registerUrl, {user: user})
+      .then(success)
+      .catch(error)
 
-			$http
-        .post('/api/users/register', {user: user})
-				.then(success)
-        .catch(error)
+    function success(res){
+      AppConfig.step = 3;
+      AppConfig.done = true;
+      $location.path('/confirmation');
+    }
 
-				function success(res){
+    function error(err){}
+  }
 
-					AppConfig.step = 3;
+  function getCurrentUser(){
+    return $http.get(AppConfig.currentUserUrl)
+      .then((response) => {
+        return response.data;
+      })
+      .catch((error)=>{
+        // you might want to do something here
+      });
+  }
 
-					if($location.$$host !== 'localhost'){
-					    mixpanel.people.set({
-					    	"$email": user.email,
-					    	"$created": new Date(),
-					        "company": user.company,
-					        "programmingLanguage": user.programmingLanguage,
-					        "isFreelance": user.isFreelance,
-					        "source": "github"
-					    });
+  return {
+    register: register,
+    getCurrentUser: getCurrentUser
+  }
+}
 
-					    mixpanel.track('confirmation page', {
-							"step": 3,
-							"process done": true
-						});
-					}
+UserFactory.$inject = ['$http', '$location', 'AppConfig'];
 
-					// Deactive loading
-          AppConfig.done = true;
-					$location.path('/confirmation');
-				}
-
-				function error(err){}
-		}
-
-		function getCurrentUser(){
-			return $http.get('/api/users/me');
-		}
-
-		return {
-			register: register,
-			getCurrentUser: getCurrentUser
-		}
-	}
-	UserFactory.$inject = ['$http', '$location', 'AppConfig'];
-
-
-  angular.module('admission.philos.io').factory('UserFactory', UserFactory);
-
-})();
