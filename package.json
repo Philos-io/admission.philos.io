@@ -41,6 +41,7 @@
     "live-server": "^0.8.2",
     "nodemon": "^1.8.1",
     "protractor": "^3.0.0",
+    "raw-loader": "^0.5.1",
     "webpack": "^1.12.9"
   },
   "author": "davy@philos.io",
