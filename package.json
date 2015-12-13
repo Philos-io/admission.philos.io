@@ -4,6 +4,7 @@
   "description": "admission apps for Philos's bootcamp",
   "main": "index.js",
   "scripts": {
+    "start": "live-server && webpack -w && npm run server",
     "server": "nodemon server",
     "azure": "azure site log tail bootcamp-philos",
     "log": "rm -rf diagnostics.zip diagnostics && azure site log download bootcamp-philos && open diagnostics.zip",
@@ -21,6 +22,7 @@
     "babel-register": "^6.3.13",
     "body-parser": "^1.14.1",
     "cookie-parser": "^1.3.5",
+    "cors": "^2.7.1",
     "express": "^4.13.0",
     "express-logger": "0.0.3",
     "express-session": "^1.11.3",
@@ -34,9 +36,12 @@
     "passport-github2": "^0.1.9"
   },
   "devDependencies": {
+    "babel-loader": "^6.2.0",
+    "babel-preset-es2015": "^6.3.13",
     "live-server": "^0.8.2",
     "nodemon": "^1.8.1",
-    "protractor": "^3.0.0"
+    "protractor": "^3.0.0",
+    "webpack": "^1.12.9"
   },
   "author": "davy@philos.io",
   "license": "MIT"
