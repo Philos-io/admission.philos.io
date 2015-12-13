@@ -13,11 +13,11 @@
 				<span data-ng-if="vm.currentUser">
 					Welcome {{vm.currentUser.name}}!
 				</span>
-			</div>	
+			</div>
 	    </div>
-	    
+
 		<div class="row" data-ng-if="!vm.currentUser">
-			<a href="/auth/github" class="waves-effect waves-light btn ajust-margin">Register with Github</a>
+      <a ng-href="{{vm.githubUrl}}" class="waves-effect waves-light btn ajust-margin">Register with Github</a>
 		</div>
     	<form class="col s12" name="registration" data-ng-submit="vm.register()" data-ng-if="vm.currentUser">
     		<div class="row">

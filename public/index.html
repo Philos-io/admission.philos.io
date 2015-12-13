@@ -12,16 +12,11 @@
     <!-- FONT AWESOME  -->
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="icon" type="image/png" href="images/logo/philos-no-bg-32x32.png">
-
-		<!-- start Mixpanel -->
-		<script type="text/javascript">(function(f,b){if(!b.__SV){var a,e,i,g;window.mixpanel=b;b._i=[];b.init=function(a,e,d){function f(b,h){var a=h.split(".");2==a.length&&(b=b[a[0]],h=a[1]);b[h]=function(){b.push([h].concat(Array.prototype.slice.call(arguments,0)))}}var c=b;"undefined"!==typeof d?c=b[d]=[]:d="mixpanel";c.people=c.people||[];c.toString=function(b){var a="mixpanel";"mixpanel"!==d&&(a+="."+d);b||(a+=" (stub)");return a};c.people.toString=function(){return c.toString(1)+".people (stub)"};i="disable track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
-		for(g=0;g<i.length;g++)f(c,i[g]);b._i.push([a,e,d])};b.__SV=1.2;a=f.createElement("script");a.type="text/javascript";a.async=!0;a.src="undefined"!==typeof MIXPANEL_CUSTOM_LIB_URL?MIXPANEL_CUSTOM_LIB_URL:"//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";e=f.getElementsByTagName("script")[0];e.parentNode.insertBefore(a,e)}})(document,window.mixpanel||[]);
-			mixpanel.init("e6e6f935b3332f0bde942e4615da4d11");
-		</script>
-		<!-- end Mixpanel -->
 	</head>
+
 	<body class="grey lighten-4">
 		<philos-admission></philos-admission>
+
 	<script>
 	  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
 	  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -30,7 +25,6 @@
 
 	  ga('create', 'UA-54806614-3', 'auto');
 	  ga('send', 'pageview');
-
 	</script>
 
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -38,15 +32,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.3/angular-route.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>
   <script src="//www.parsecdn.com/js/parse-1.5.0.min.js"></script>
-  <script src="scripts/index.js"></script>
-  <script src="components/app-controller.js"></script>
-  <script src="components/user-factory.js"></script>
-  <script src="components/confirmation-controller.js"></script>
-  <script src="components/disable-forms-directive.js"></script>
-  <script src="components/routes.js"></script>
-  <script src="components/header-directive.js"></script>
-  <script src="components/main-directive.js"></script>
-  <script src="components/constants.js"></script>
+  <script src="scripts/bundle.js"></script>
   </body>
 </html>
 

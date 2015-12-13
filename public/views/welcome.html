@@ -47,8 +47,7 @@
         </div>
       </div>
       <div class="row" data-ng-if="!vm.currentUser">
-
-        <a href="/auth/github" class="waves-effect waves-light btn ajust-margin">
+        <a ng-href="{{vm.githubUrl}}" class="waves-effect waves-light btn ajust-margin">
           <i class="fa fa-github"></i>
           Register with Github
         </a>
