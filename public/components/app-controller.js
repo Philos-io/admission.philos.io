@@ -12,10 +12,12 @@ export default class AppController{
         this.session = "25th JAN - 30th JAN";
         AppConfig.step = 2;
       });
+
+    this.userFactory = userFactory;
   }
 
   register(){
-    userFactory.register(this);
+    this.userFactory.register(this);
   }
 
 }
