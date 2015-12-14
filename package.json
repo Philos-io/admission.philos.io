@@ -11,7 +11,8 @@
     "build": "webpack",
     "wpack": "webpack -w",
     "dev": "npm run wpack && npm start",
-    "test": "protractor config",
+    "test": "karma start",
+    "e2e": "protractor config",
     "deploy-test": "surge -p public -d admission-philos.surge.sh",
     "deploy": "surge -p public",
     "booyaa": "npm run build && npm run deploy"
@@ -37,7 +38,10 @@
     "passport-github2": "^0.1.9"
   },
   "devDependencies": {
+    "angular-mocks": "^1.4.8",
     "babel-loader": "^6.2.0",
+    "karma-babel-preprocessor": "^6.0.1",
+    "karma-jasmine": "^0.3.6",
     "live-server": "^0.8.2",
     "nodemon": "^1.8.1",
     "protractor": "^3.0.0",
