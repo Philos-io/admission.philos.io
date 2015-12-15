@@ -1,7 +1,7 @@
 'use strict';
 
 let Parse = require('parse/node').Parse;
-let emailConfig = require('./email-configuration');
+let emailConfig = require('./emailConfiguration');
 
 module.exports = function(app, passport){
 
