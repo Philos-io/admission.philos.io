@@ -2,8 +2,9 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  // devtool: 'eval-source-map',
+  devtool: 'eval-source-map',
   entry: './public/scripts/index',
+  // entry: ['./public/scripts/index', './server/index']
   output: {
     path: path.join(__dirname, 'public/scripts'),
     filename: 'bundle.js'
@@ -15,8 +16,8 @@ module.exports = {
       { test: /\.html$/, exclude: /node_modules/, loader: 'raw' },
       { test: /\.(jpe?g|png|gif|svg)$/i,
         loaders: [
-            'file?hash=sha512&digest=hex&name=[hash].[ext]',
-            'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
+          'file?hash=sha512&digest=hex&name=[hash].[ext]',
+          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
         ]
       }
     ]
