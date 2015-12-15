@@ -3,13 +3,13 @@ import 'angular-route';
 
 
 import routes                 from '../components/routes';
-import userFactory            from '../components/user-factory';
-import AppController          from '../components/app-controller';
-import philosAdmission        from '../components/main-directive';
-import headerDirective        from '../components/header-directive';
-import disabledForm           from '../components/disable-forms-directive';
-import ConfirmationController from '../components/confirmation-controller';
-import AppConfig              from '../components/app-config';
+import userFactory            from '../components/userFactory';
+import AppController          from '../components/appController';
+import philosAdmission        from '../components/mainDirective';
+import headerDirective        from '../components/headerDirective';
+import disabledForm           from '../components/disabledFormsDirective';
+import ConfirmationController from '../components/confirmationController';
+import AppConfig              from '../components/appConfig';
 
 module('admission.philos.io', ['ngRoute'])
   .config(routes)
