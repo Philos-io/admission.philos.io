@@ -1,6 +1,8 @@
+let shell = require('../views/main.html');
+
 export default function mainDirective(){
   return {
     restrict: 'E',
-    templateUrl: 'views/main.html'
+    template: shell
   };
 }
