@@ -1,0 +1,36 @@
+<form ng-submit="app.register()" name="registerForm" novalidate>
+  <div class="mdl-textfield mdl-js-textfield form-control">
+    <input class="mdl-textfield__input" name="fullname" type="text" id="fullname" ng-model="app.fullname">
+    <label class="mdl-textfield__label" for="fullname">your fullname...</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield form-control">
+    <input class="mdl-textfield__input" type="email" id="email" name="email" ng-model="app.email">
+    <label class="mdl-textfield__label" for="email">your email...</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield form-control">
+    <input class="mdl-textfield__input" type="text" id="company" name="company" ng-model="app.company">
+    <label class="mdl-textfield__label" for="company">your company...</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield form-control">
+    <input class="mdl-textfield__input" type="text" id="job" name="job" ng-model="app.job">
+    <label class="mdl-textfield__label" for="job">your current position...</label>
+  </div>
+  <div class="mdl-textfield mdl-js-textfield form-control">
+    <input class="mdl-textfield__input" type="text" id="programminglanguage" name="programminglanguage" ng-model="app.programminglanguage">
+    <label class="mdl-textfield__label" for="programminglanguage">your main programming language(s)...</label>
+  </div>
+  <div class="form-control">
+    <label for="freelance" class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect">
+      <input type="checkbox" id="freelance" class="mdl-checkbox__input" name="freelance" ng-model="app.isFreelance">
+      <span class="mdl-checkbox__label">Are you a freelance?</span>
+    </label>
+  </div>
+
+  <div class="g-recaptcha" data-sitekey="6LeAghUTAAAAAH-nJDuhqbNDuuM07xOQBjcr8hln"></div>
+
+  <div class="form-control">
+    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+      Register
+    </button>
+  </div>
+</form>
