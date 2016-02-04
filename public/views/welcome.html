@@ -10,16 +10,15 @@
         <div class="card">
           <div class="card-content">
           <p>Welcome to the admission process of the 1-week bootcamp. We’re glad to know that you want to learn how to exploit the full potential of JavaScript and AngularJS. As stated, this bootcamp is for developers who master at least one programming language other than JavaScript (C#, Java Go, Python, PHP …).<br/>
-          From application to decision, the whole process might take up to 2 weeks. So the earlier you apply, the better.
+          From application to decision, the whole process might take up to 1 week. So the earlier you apply, the better.
           <br/>
           You can find more information about the program <a href="https://www.philos.io/program">on our website</a>.
           </p>
           <br/>
           <p class="uppercase text-normal-plus bold-4">Steps for the admission process</p>
           <ol>
-            <li><span class="bold-4">Registration:</span> You submit your application. </li>
-            <li><span class="bold-4">In person Interview:</span> Once your application submitted, we will come back to you to set up an In person interview (skype/hangout/appearin, …). <br/>
-            During the interview, we will assess your level which will in turn help us to determine if you’re eligible for the bootcamp and if your skills matches those of the other participants.</li>
+            <li><span class="bold-4">In person Interview:</span> Schedule an interview via calendly by following the link below. Mention the session you apply for and you will hear from us very soon.
+            The goal of this interview is to make sure that you have what it takes to survive our intensive bootcamp!</li>
             <li><span class="bold-4">Decision:</span> We deliver an admission decision to you, and talk about next-steps.</li>
           </ol>
           <br/>
@@ -31,78 +30,21 @@
 </section>
 <section class="paddidata-top-small">
   <div class="container register">
-    <div class="row">
-      <div class="col s12 l6 left">
-          <h4>Registration with Github</h4>
-        </div>
-    </div>
-      <div class="col s12 card">
-        <div class="card-content">
-          <span data-ng-if="!vm.currentUser">
-            Please register with your Github account as we will be using it for the whole bootcamp. No Github? Don't worry, click on the button below and you will be able to create an account directly on Github.
-          </span>
-          <span data-ng-if="vm.currentUser">
-            Welcome {{vm.currentUser.name}}!
-          </span>
-        </div>
+    <form class="col s12" name="registration">
+      <div class="row">
+        <label for="">Upcoming sessions</label>
+        <p>
+        <input name="session" type="radio" id="brussels" value="29th Feb - 05th Mar 2016" data-ng-model="vm.session"/>
+        <label for="brussels">29th Feb - 05th March 2016 - Brussels</label>
+        </p>
+        <p>
+        <input name="session" type="radio" id="paris" value="14th - 20th March" data-ng-model="vm.session"/>
+        <label for="paris">14th - 20th March 2016 - Paris</label>
+        </p>
       </div>
-      <div class="row" data-ng-if="!vm.currentUser">
-        <a ng-href="{{vm.githubUrl}}" class="waves-effect waves-light btn ajust-margin">
-          <i class="fa fa-github"></i>
-          Register with Github
-        </a>
+      <div class="row">
+        <a href="https://calendly.com/davy/interview_bootcamp" class="waves-effect waves-light btn">Schedule an interview</a>
       </div>
-
-      <form class="col s12"
-            name="registration"
-            data-ng-submit="vm.register()"
-            data-disabled-form="vm.currentUser">
-
-        <div class="row">
-          <div class="input-field col s12 l6">
-            <input type="checkbox" id="freelance" data-ng-model="vm.isFreelance" />
-            <label for="freelance">Are you a freelance?</label>
-          </div>
-        </div>
-        <div class="row" data-ng-if="!vm.currentUser.email">
-          <div class="input-field col s12 l6">
-              <input name="email" type="email" class="validate"  required data-ng-model="vm.currentUser.email">
-              <label for="company">Your email</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12 l6">
-              <input name="company" type="text" class="validate"  required data-ng-model="vm.company">
-              <label for="company">Your company</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12 l6">
-            <input value="" name="job" type="text" class="validate" required data-ng-model="vm.job">
-            <label for="job">Your current position</label>
-          </div>
-        </div>
-        <div class="row">
-          <div class="input-field col s12 l6">
-            <input value="" name="programming_language" type="text" class="validate" required data-ng-model="vm.programmingLanguage">
-            <label for="programming_language">What is your favorite programming language?</label>
-          </div>
-        </div>
-
-        <div class="row">
-          <label for="">Select the session you want to attend</label>
-          <p>
-            <input name="session" type="radio" id="session2" value="29th Feb - 05th Mar 2016" data-ng-model="vm.session"/>
-            <label for="session2">29th Feb - 05th March 2016 - Brussels</label>
-          </p>
-          <p>
-            <input name="session" type="radio" id="session2" value="14th - 20th March" data-ng-model="vm.session"/>
-            <label for="session2">14th - 20th March 2016 - Paris</label>
-          </p>
-        </div>
-        <div class="row">
-          <button class="waves-effect waves-light btn" data-ng-disabled="registration.$invalid">Apply for the bootcamp</button>
-        </div>
-      </form>
+    </form>
   </div>
 </section>
