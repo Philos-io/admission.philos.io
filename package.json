@@ -1,7 +1,7 @@
 {
   "name": "admission.philos.io",
   "version": "1.0.0",
-  "description": "admission apps for Philos's bootcamp",
+  "description": "admission apps for Philos' bootcamp",
   "main": "index.js",
   "scripts": {
     "start": "live-server && webpack -w && npm run server",
