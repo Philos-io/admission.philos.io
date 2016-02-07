@@ -2,7 +2,6 @@
 
 let path = require('path');
 let express = require('express');
-let passport = require('passport');
 let	logger = require('morgan');
 let session = require('express-session');
 let methodOverride = require('method-override');
@@ -15,8 +14,8 @@ module.exports = function(app, passport){
     app.use(require('cors')());
   }
 
-  app.use(passport.initialize());
-  app.use(passport.session());
+  // app.use(passport.initialize());
+  // app.use(passport.session());
   app.use(logger('dev'));
   app.use(bodyParser.json());
   app.use(bodyParser.urlencoded({ extended: false }));
