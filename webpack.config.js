@@ -7,7 +7,7 @@ module.exports = {
   // entry: ['./public/scripts/index', './server/index']
   output: {
     path: path.join(__dirname, 'public/scripts'),
-    filename: 'bundle.js'
+    filename: 'admission.philos.js'
   },
   module: {
     loaders: [
