@@ -5,13 +5,13 @@ let config  = require('./config');
 let Parse = require('parse/node').Parse;
 let GithubStrategy = require('passport-github').Strategy;
 
-module.exports = function(passport){
+module.exports = (passport) => {
 
-  passport.serializeUser(function(user, done) {
+  passport.serializeUser((user, done) => {
     done(null, user);
   });
 
-  passport.deserializeUser(function(user, done) {
+  passport.deserializeUser((user, done) => {
     done(null, user);
   });
 
@@ -19,7 +19,7 @@ module.exports = function(passport){
     clientID: config.GITHUB_CLIENT_ID,
     clientSecret: config.GITHUB_CLIENT_SECRET,
     callbackURL: `${config.URL}/auth/github/callback`,
-  }, function(token, tokenSecret, profile, done){
+  }, (token, tokenSecret, profile, done) => {
 
     profile = profile._json;
 
@@ -31,7 +31,7 @@ module.exports = function(passport){
     query.equalTo('github', profile.login);
 
     query.first({
-      success: function(user) {
+      success(user){
         if (user) {
           done(null, user);
         }
@@ -39,7 +39,7 @@ module.exports = function(passport){
           addCandidate()
         }
       },
-      error: function(user, error) {
+      error(user, error){
         done(error, user);
       }});
 
@@ -52,10 +52,10 @@ module.exports = function(passport){
         candidate.set('provider', 'github');
 
         candidate.save(null, {
-          success: function(user){
+          success(user){
             done(null, user);
           },
-          error: function(user, err){
+          error(user, err){
             done(err, user);
           }
         });}

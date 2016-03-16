@@ -18,7 +18,7 @@ module.exports = function(app, passport){
     res.send(req.session.user).status(200);
   });
 
-  app.post('/api/users/register', function(req, res){
+  app.post('/api/users/register', (req, res) => {
 
     let newCandidate = req.body.user;
     let Candidate = Parse.Object.extend("Candidate");
@@ -29,7 +29,7 @@ module.exports = function(app, passport){
     query.first({
       success: (user) => {
         user.save(null, {
-          success: (updateUser) =>{
+          success: (updateUser) => {
             updateUser.set('passInterview', false);
             updateUser.set('interviewed', false);
 
@@ -48,12 +48,12 @@ module.exports = function(app, passport){
             req.session.user = null;
             res.send({message: 'saved', user: user}).status(200);
           },
-          error: (user, err) =>{
+          error: (user, err) => {
             res.send({message: 'user not saved'}).status(500);
           }
         });
       },
-      error: (user, error) =>{
+      error: (user, error) => {
         res.send({message: 'user not saved'}).status(500);
       }
     });
