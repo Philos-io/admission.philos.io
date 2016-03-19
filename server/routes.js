@@ -18,8 +18,9 @@ module.exports = function(app, passport){
     res.send(req.session.user).status(200);
   });
 
-  app.post('/api/users/register', (req, res) => {
+  app.post('/api/users/register', register);
 
+  let register = (req, res) => {
     let newCandidate = req.body.user;
     let Candidate = Parse.Object.extend("Candidate");
     let query = new Parse.Query(Candidate);
@@ -57,5 +58,5 @@ module.exports = function(app, passport){
         res.send({message: 'user not saved'}).status(500);
       }
     });
-  });
+  }
 }
