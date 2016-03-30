@@ -2,23 +2,27 @@ var path = require('path');
 var webpack = require('webpack');
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'inline-source-map',
   entry: './public/scripts/index',
   output: {
     path: path.join(__dirname, 'public/scripts'),
-    filename: 'admission.philos.js'
+    filename: 'admission.philos.js',
   },
   module: {
     loaders: [
-      { test: /\.js$/, exclude: /node_modules/, loaders: ['babel'] },
-      { test: /\.css$/, exclude: /node_modules/, loader: 'style!css' },
-      { test: /\.html$/, exclude: /node_modules/, loader: 'raw' },
-      { test: /\.(jpe?g|png|gif|svg)$/i,
-        loaders: [
-          'file?hash=sha512&digest=hex&name=[hash].[ext]',
-          'image-webpack?bypassOnDebug&optimizationLevel=7&interlaced=false'
-        ]
-      }
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        loader: 'babel',
+        query: {
+          presets: ['es2015']
+        },
+      },
+      {
+        test: /\.html$/,
+        exclude: /node_modules/,
+        loader: 'raw',
+      },
     ]
   },
   plugins: [
